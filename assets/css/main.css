@@ -1,0 +1,27 @@
+span {
+}
+
+#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+  color: rgb(251,116,68);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgb(251,116,68);
+  border-color: rgb(251,116,68);
+}
+
+.btn.btn-primary.btn-xl.text-uppercase.js-scroll-trigger {
+  background-color: rgb(251,116,68);
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+  background-color: rgb(249,97,43)!important;
+  border-color: rgb(249,97,43)!important;
+  color: #fff;
+}
+
+.text-primary {
+  color: rgb(251,116,68)!important;
+}
+
