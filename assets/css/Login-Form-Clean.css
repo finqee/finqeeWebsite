@@ -45,7 +45,7 @@
 }
 
 .login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
-  background: rgb(249,97,43);
+  background: rgb(249,97,43)!important;
 }
 
 .login-clean form .btn-primary:active {
