@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const usersCollection = require('../db').db().collection("users")
+const usersCollection = require('../db').db('Finqee').collection("users")
 const validator = require('validator')
 
 let User = function(data) {
