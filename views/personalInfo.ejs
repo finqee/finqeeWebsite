@@ -1,0 +1,42 @@
+<%- include('layout.ejs') %>
+
+<main class="page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+          <%- include('flash.ejs') %>
+            <div class="block-heading">
+                <h2 class="text-primary text-center">Personal Information</h2>
+            </div>
+            <form action="/personal" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="form-group"><label>Name</label><input class="form-control" name="name" type="text" value="<%= personal.name %>"></div>
+                <div class="form-group"><label>Surname</label><input class="form-control" name="surname" type="text" value="<%= personal.surname %>"></div>
+                <div class="form-group"><label>Birth date</label><input class="form-control" name="date" type="date" value="<%= personal.date.getFullYear() + '-' + ('0' + (personal.date.getMonth() + 1)).slice(-2) + '-' + ('0' + personal.date.getDate()).slice(-2) %>"></div>
+                <div class="form-group"><label>ID</label><input class="form-control" name="ID" type="number" value="<%= personal.ID %>"></div>
+                <div class="form-group">
+                    <label class="control-label">Academic degree</label>
+                    <div>
+                      <select name="degree" class="form-control">
+                        <% if(personal.degree == "Bachelor") { %>   
+                        <option selected>Bachelor</option>
+                        <% } else { %>
+                        <option>Bachelor</option>
+                        <% } if(personal.degree == "Master") { %> 
+                        <option selected>Master</option>
+                        <% } else { %>
+                        <option >Master</option>
+                        <% } if(personal.degree == "Doctoral") { %> 
+                        <option selected>Doctoral</option>
+                        <% } else { %>
+                        <option>Doctoral</option>
+                        <% } %>
+                      </select> 
+                    </div>
+                  </div>
+                <div class="form-group"><label>Course of study</label><input class="form-control" name="course" type="number" value="<%= personal.course %>"></div>
+                <div class="form-group"><label>Phone number</label><input class="form-control"  name="number" type="number" value="<%= personal.number %>"></div>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Send</button></div>
+            </form>
+        </div>
+    </section>
+</main>

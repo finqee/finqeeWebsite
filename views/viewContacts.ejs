@@ -1,0 +1,24 @@
+<%- include('layout') %>
+
+<div class="container">
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% documents.forEach((document) => { %>
+            <tr>
+              <td><%= document.name %></td>
+              <td><%= document.email %></td>
+              <td><%= document.phone %></td>
+              <td class="col" style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><%= document.message %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>

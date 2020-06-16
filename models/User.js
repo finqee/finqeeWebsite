@@ -47,6 +47,7 @@ User.prototype.validate = function() {
         resolve()
     })
 }
+
 User.prototype.register = function() {
     return new Promise(async (resolve, reject) => {
         // 1. Validate user data
@@ -58,8 +59,9 @@ User.prototype.register = function() {
             let salt = bcrypt.genSaltSync(10)
             this.removeBogus()
             this.data.password = bcrypt.hashSync(this.data.password, salt)
-            await usersCollection.insertOne(this.data)
-            resolve()
+            usersCollection.insertOne(this.data).then((user) => {
+                resolve(user.insertedId.toString())
+            })
         } else {
             reject(this.errors)
         }
@@ -71,7 +73,7 @@ User.prototype.login = function() {
         this.cleanUp()
         usersCollection.findOne({email: this.data.email}).then((attemptedUser) => {
             if(attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
-                resolve("Valid info")
+                resolve(attemptedUser)
             } else {
                 reject("Invalid email / password")
             }
@@ -80,6 +82,5 @@ User.prototype.login = function() {
         })
     })
 }
-
 
 module.exports = User

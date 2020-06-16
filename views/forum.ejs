@@ -1,0 +1,36 @@
+<%- include('layout') %>
+
+<div class="container">
+    <form action="/topic" method="GET">
+        <div>
+            <button class="btn btn-outline-primary mt-5" type="submit">Create Topic</button>
+        </div>
+    </form>
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">Topics</th>
+            <th scope="col">Replies</th>
+            <th scope="col">Last post</th>
+            <th scope="col">Last post date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% documents.forEach((document) => { %>
+            <tr class='clickable-row' data-href='/topic/<%=document._id %>'>
+              <td><%= document.title %></td>
+              <td><%= document.postCount %></td>
+              <td><%= document.lastName + " " + document.lastSurname %></td>
+              <td><%= document.lastDate.toString().substring(0,24) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+        <script>
+          jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+          });
+          });
+          </script>
+      </table>
+</div>

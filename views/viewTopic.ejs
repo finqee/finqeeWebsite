@@ -1,0 +1,33 @@
+<%- include('layout') %>
+
+<div class="container">
+    <h1 class="mt-5"><%= posts[0].title %></h1>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+              <th scope="col">Author</th>
+              <th scope="col">Post</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% posts.forEach((document) => { %>
+              <tr>
+                <td ><%= document.user.name + " " + document.user.surname %></td>
+                <td class="col" style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><%= document.body %></td>
+                <td><%= document.createdDate.toString().substring(0,24) %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+    </table>
+
+    <%- include('flash') %>
+
+    <form action="/topic/<%= posts[0].topicId %>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="form-group">
+            <textarea required name="body" id="post-body" class="body-content form-control" type="text" style="height: 200px;"></textarea>
+        </div>
+        <button class="btn btn-outline-primary">Save post</button>
+      </form>
+</div>
