@@ -6,7 +6,7 @@ const app = express()
 const csrf = require('csurf')
 
 let sessionOptions = session({
-    secret: "This is Secret rip",
+    secret: process.env.SESSIONSECRET,
     store: new MongoStore({client: require('./db'), dbName: 'Finqee'}),
     resave: false,
     saveUninitialized: false,
